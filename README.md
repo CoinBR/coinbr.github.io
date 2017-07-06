@@ -2,5 +2,4 @@
 
 ### [Facebook](http://fb.me/CoinBRN)
 
-### (mailto:coinbr@gmail.com)
-
+### <a href="mailto:coinbr@gmail.com">coinbr@gmail.com</a>
