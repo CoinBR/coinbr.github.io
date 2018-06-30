@@ -1,14 +1,15 @@
-Info: DeliveryProcess:CicloDeVidaFMCPA: 934 mini seconds publishing element
-Info: DeliveryProcess:CicloDeVidaFMCPA: 422 mini seconds publishing process specific layout data
-Info: Phase:Avaliação: 703 mini seconds publishing element
-Info: Activity:1. Planejamneto De Avaliação: 375 mini seconds publishing element
-Info: Activity:2. Execução Da Avaliação: 423 mini seconds publishing element
-Info: Activity:3. Análise Dos Resultados: 451 mini seconds publishing element
-Info: Activity:4. Planejamento Da Melhoria: 359 mini seconds publishing element
-Info: Phase:Melhoria: 562 mini seconds publishing element
-Info: Activity:5. Inclusão: 360 mini seconds publishing element
-Info: Activity:6. Execução: 359 mini seconds publishing element
-Info: Activity:7. Revisão: 344 mini seconds publishing element
-Info: CustomCategory:Configuration free process view: 94 mini seconds publishing element
-Info: CustomCategory:Processes: 31 mini seconds publishing element
-Info: : Publishing time: 0 minutes 9 seconds
+Info: : 13999 mini-second(s) publishing element DeliveryProcess:CicloDeVidaFMCPA[FMCPA\deliveryprocesses\CicloDeVidaFMCPA_E434FD6C.html]
+Info: DeliveryProcess:CicloDeVidaFMCPA: 13999 mini seconds publishing element
+Info: DeliveryProcess:CicloDeVidaFMCPA: 501 mini seconds publishing process specific layout data
+Info: Phase:Avaliação: 843 mini seconds publishing element
+Info: Activity:1. Planejamneto De Avaliação: 500 mini seconds publishing element
+Info: Activity:2. Execução Da Avaliação: 516 mini seconds publishing element
+Info: Activity:3. Análise Dos Resultados: 422 mini seconds publishing element
+Info: Activity:4. Planejamento Da Melhoria: 422 mini seconds publishing element
+Info: Phase:Melhoria: 656 mini seconds publishing element
+Info: Activity:5. Inclusão: 406 mini seconds publishing element
+Info: Activity:6. Execução: 422 mini seconds publishing element
+Info: Activity:7. Revisão: 422 mini seconds publishing element
+Info: CustomCategory:Configuration free process view: 609 mini seconds publishing element
+Info: CustomCategory:Processes: 63 mini seconds publishing element
+Info: : Publishing time: 0 minutes 28 seconds
