@@ -26,11 +26,10 @@ $(document).ready(function(){
 		};
 
 		function getWords(){
-			var txt = document.getElementById("answers").value;
-			txt.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,""); // remove ponctuation
-			txt.replace(/(\r\n\t|\n|\r\t)/gm,""); // remove line breaks
+			const txt = document.getElementById("answers").value;
+			const filteredText = txt.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()\r\n\t|\n|\r\t]/g,"");
 			
-			var words = txt.split(" ");
+			var words = filteredText.split(" ");
 			const camelized = camelizeWords(words);
 			return filterWords(camelized);
 		}
