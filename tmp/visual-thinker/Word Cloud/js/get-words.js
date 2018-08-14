@@ -10,7 +10,9 @@ $(document).ready(function(){
 					"seja", "sejam", "sejamos", "acontece", "acontecem", "acontecerão", "aconteceram", "mostrar", "mostra", "mostrando",
 					"amostrado", "mesmo", "determina", "determinado", "determinada", "apenas", "espero", "esperava", "esperando", "espera",
 					"salve", "lhe", "lá", "lo", "momento", "momentos", "momentâneo", "momentâneamente", "dar", "dou", "deu", "dão", "dói",
-					"faço", "faça", "façam", "façamos", "farei", "feito"];
+					"faço", "faça", "façam", "façamos", "farei", "feito", "só", "so", "aliás", "alias", "mas", "porém", "porem", "pq",
+					"tô", "tou", "estou", "por", "que", "porque", "porquê", "quê",
+					];
 
 		function camelizeWords(words){
 			return words.map(function(word){
