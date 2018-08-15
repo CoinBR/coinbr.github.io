@@ -1,0 +1,26 @@
+/*body {
+    background: #3196fe;
+    -webkit-animation: mymove 5s infinite;
+    animation: mymove 5s infinite;
+}
+
+@-webkit-keyframes mymove {
+    from {background-color: #ffb400;}
+    to {background-color: #325096;}
+}
+
+@keyframes mymove {
+    from {background-color: #ffb400;}
+    to {background-color: #325096;}
+}*/
+
+hr {
+    border: 0 !important;
+    height: 1px !important;
+    background-image: linear-gradient(90deg,#fff,#265fc1,#fff) !important;
+}
+
+label {
+    display: block !important;
+    text-align: center;
+}
