@@ -10,12 +10,10 @@
 <link rel="stylesheet" href="./css/style.css" type="text/css" />  
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script type="text/javascript" src="Word Cloud/js/lib/jQWCloudv3.1.js"></script>
 <script type="text/javascript" src="Word Cloud/js/index.js"></script>
 <script type="text/javascript" src="Word Cloud/js/get-words.js"></script>
-<style>
-h1 { margin:150px auto 50px auto; text-align:center;}
-</style>
 </head>
 <body>
 <div class="container">
@@ -27,37 +25,27 @@ h1 { margin:150px auto 50px auto; text-align:center;}
 	<hr>
 	<div class="row">
 		<div class="col-lg">
-			<form>
-				<div class="form-group">
-					<label for="exampleFormControlTextarea1"><h3>Descreva um breve resumo para criação da nuvem de TAGs</h3></label>
-					<textarea class="form-control" id="answers" name="answers" rows="20" cols="75"></textarea>
-				</div>
-				<button type="button" class="btn btn-primary btn-lg btn-block shadow p-3 mb-5 rounded">Gerar Nuven</button>
-			</form>
+			<div class="form-group">
+				<label for="exampleFormControlTextarea1"><h3>Descreva um breve resumo para criação da nuvem de TAGs</h3></label>
+				<textarea class="form-control" id="answers" name="answers" rows="20" cols="75"></textarea>
+			</div>
+			<input id="genCloud" class="btn btn-primary btn-lg btn-block shadow p-3 mb-5 rounded" type="submit" value="Gerar Nuven" data-toggle="modal" data-target=".bd-example-modal-lg">
+			
+			
+			<div id="footer" class="col-lg shadow p-3 mb-5 rounded">
+				© 2018 - Visual Thinker
+				<a class="grey-text text-lighten-4 right hide-on-small-only" href="#" target="“_blank”">
+					<img height="25px" src="./img/logo_foot.jpg">
+				</a>
+			</div>
 			<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
-							<div id="wordCloud"></div>
+						<div id="wordCloud"></div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="row">
-		<footer class="page-footer">
-			<div class="footer-copyright">
-				<div class="container shadow p-3 mb-5 rounded">
-					<div class="col-lg">
-						© 2018 - Visual Thinker
-						<a class="grey-text text-lighten-4 right hide-on-small-only" href="#" target="“_blank”">
-							<img height="25px" src="./img/logo_foot.jpg">
-						</a>
-					</div>
-					
-				</div>
-			</div>
-		</footer>
-
 	</div>
 </div>
 </body>
