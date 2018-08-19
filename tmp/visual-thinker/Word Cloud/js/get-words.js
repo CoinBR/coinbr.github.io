@@ -29,7 +29,8 @@ $(document).ready(function(){
 
 		function getWords(){
 			const txt = document.getElementById("answers").value;
-			const filteredText = txt.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()\r\n\t|\n|\r\t]/g,"");
+			const txtSimplified = txt.replace(/[\r\n\t|\n|\r\t]/g," ");
+			const filteredText = txtSimplified.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()\r\n\t|\n|\r\t]/g,"");
 			
 			var words = filteredText.split(" ");
 			const camelized = camelizeWords(words);
@@ -46,10 +47,12 @@ $(document).ready(function(){
 			const occurrences = raw.filter(word => word === raw[0]);
 			const newRaw = raw.filter(word => word !== raw[0]);
 			
-			words.push({
-				word: raw[0],
-				weight: occurrences.length
-			});			
+			if (occurrences[0] !== ""){
+				words.push({
+					word: raw[0],
+					weight: occurrences.length
+				});			
+			}
 			return createWeightedWordsArray(newRaw, words);
 		}
 		
