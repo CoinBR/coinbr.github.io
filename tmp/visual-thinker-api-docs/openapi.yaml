@@ -1,0 +1,89 @@
+---
+openapi: 3.0.0
+info:
+  title: Visual-Thinker API Privada
+  description: '[em desenvolvimento] API Privada do Visual-Thinker, para consumo do
+    frontend'
+  contact:
+    email: coinbr@gmail.com
+  license:
+    name: Licença Privada
+  version: 1.0.0
+servers:
+- url: /
+tags:
+- name: projetos
+  description: Projetos de Arte criados pelos Designers
+paths:
+  /projetos/{idDesigner}:
+    get:
+      tags:
+      - projetos
+      summary: Lista os projetos do Designer
+      parameters:
+      - name: idDesigner
+        in: path
+        description: id do Designer
+        required: true
+        style: SIMPLE
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: Designer encontrado
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/projeto'
+        404:
+          description: Não há um Designer com esse id
+components:
+  schemas:
+    palavraDaNuvemDeTags:
+      required:
+      - weight
+      - word
+      type: object
+      properties:
+        weight:
+          type: integer
+          description: Um numero que representa o tamanho/importancia da palavra
+          format: int32
+          example: 3
+        word:
+          type: string
+          description: String com a palavra em si digitada
+          example: Sentido
+    nuvemDeTags:
+      type: array
+      description: |
+        Um array de objetos. (palavraDaNuvemDeTags)
+      example: |
+        [ {
+            "weight" : 1,
+            "word" : "Sinto"
+          }, {
+            "weight" : 2,
+            "word" : "Sentido"
+        } ]
+      items:
+        $ref: '#/components/schemas/palavraDaNuvemDeTags'
+    projeto:
+      required:
+      - id
+      - textoLivre
+      - titulo
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        titulo:
+          type: string
+          example: Logo da Clonadores de Humanos S.A.
+        nuvemDeTags:
+          $ref: '#/components/schemas/nuvemDeTags'
+  extensions: {}
