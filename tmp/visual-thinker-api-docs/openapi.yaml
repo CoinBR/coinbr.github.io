@@ -44,11 +44,11 @@ components:
   schemas:
     palavraDaNuvemDeTags:
       required:
-      - weight
+      - value
       - word
       type: object
       properties:
-        weight:
+        value:
           type: integer
           description: Um numero que representa o tamanho/importancia da palavra
           format: int32
@@ -63,10 +63,10 @@ components:
         Um array de objetos. (palavraDaNuvemDeTags)
       example: |
         [ {
-            "weight" : 1,
+            "value" : 1,
             "word" : "Sinto"
           }, {
-            "weight" : 2,
+            "value" : 2,
             "word" : "Sentido"
         } ]
       items:
