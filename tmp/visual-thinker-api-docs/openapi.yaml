@@ -10,7 +10,7 @@ info:
     name: Licença Privada
   version: 0.0.1
 servers:
-- url: /
+- url: https://visual-thinker-api.devops.ifrn.edu.br/visualthinker-213612/us-central1/api
 tags:
 - name: projetos
   description: Projetos de Arte criados pelos Designers
