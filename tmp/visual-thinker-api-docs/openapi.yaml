@@ -8,7 +8,7 @@ info:
     email: coinbr@gmail.com
   license:
     name: Licença Privada
-  version: 1.0.0
+  version: 0.0.1
 servers:
 - url: /
 tags:
@@ -40,6 +40,199 @@ paths:
                   $ref: '#/components/schemas/projeto'
         404:
           description: Não há um Designer com esse id
+    post:
+      tags:
+      - projetos
+      summary: Cria um Novo Projeto para esse Designer
+      parameters:
+      - name: idDesigner
+        in: path
+        description: id do Designer
+        required: true
+        style: SIMPLE
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/projeto'
+        required: true
+      responses:
+        201:
+          description: Projeto Criado
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/projeto'
+        404:
+          description: Já existe um outro projeto com esse título
+  /projetos/{idDesigner}/projeto/{idProjeto}:
+    get:
+      tags:
+      - projetos
+      summary: Retorna um Projeto do Designer
+      parameters:
+      - name: idDesigner
+        in: path
+        description: id do Designer
+        required: true
+        style: SIMPLE
+        explode: false
+        schema:
+          type: string
+      - name: idProjeto
+        in: path
+        description: id do Projeto
+        required: true
+        style: SIMPLE
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: Projeto Encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/projeto'
+        400:
+          description: |
+            O Designer não tem um Projeto com esse id
+
+            OU o designer não existe
+    put:
+      tags:
+      - projetos
+      summary: Altera um Projeto de um Designer
+      parameters:
+      - name: idDesigner
+        in: path
+        description: id do Designer
+        required: true
+        style: SIMPLE
+        explode: false
+        schema:
+          type: string
+      - name: idProjeto
+        in: path
+        description: id do Projeto
+        required: true
+        style: SIMPLE
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: Projeto Alterado com Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/projeto'
+        400:
+          description: "Já existe um outro projeto com Título que você está tentando\
+            \ colocar\n\nOU o Designer não tem um Projeto com esse id\n\nOU o designer\
+            \ não existe             \n"
+    delete:
+      tags:
+      - projetos
+      summary: Deleta um Projeto de um Designer
+      parameters:
+      - name: idDesigner
+        in: path
+        description: id do Designer
+        required: true
+        style: SIMPLE
+        explode: false
+        schema:
+          type: string
+      - name: idProjeto
+        in: path
+        description: id do Projeto
+        required: true
+        style: SIMPLE
+        explode: false
+        schema:
+          type: string
+      responses:
+        204:
+          description: Projeto Excluído com Sucesso
+        400:
+          description: "o Designer não tem um Projeto com esse id\n\nOU o designer\
+            \ não existe    \n"
+  /projetos/{idDesigner}/projeto/{idProjeto}/atualizar-nuvem-de-tags:
+    put:
+      tags:
+      - projetos
+      summary: Atualiza a NuvemDeTags
+      description: "Atualiza a Nuvem de Tags, levando em consideração o novo conteú\
+        do textual e os novos preenchimentos de formulário. \n\nA Nuvem De Tags só\
+        \ é atualizada sob demanda, a partir dessa chamada da API.\n\nSe essa chamada\
+        \ não for realizada, a nuvem de tags continuará a mesma, ainda que novos conteú\
+        dos textuais ou formulários sejam enviados.  \n"
+      parameters:
+      - name: idDesigner
+        in: path
+        description: id do Designer
+        required: true
+        style: SIMPLE
+        explode: false
+        schema:
+          type: string
+      - name: idProjeto
+        in: path
+        description: id do Projeto
+        required: true
+        style: SIMPLE
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: Nuvem de Tags atualizada com sucesso
+        400:
+          description: "O Designer não tem um Projeto com esse id\n\nOU o designer\
+            \ não existe  \n"
+  /projetos/{idDesigner}/projeto/{idProjeto}/painelVisual:
+    get:
+      tags:
+      - projetos
+      summary: Gera um Painel Visual
+      description: Gera um Painel Visual com imagens do pexels.com baseadas na nuvemDeTags
+      parameters:
+      - name: idDesigner
+        in: path
+        description: id do Designer
+        required: true
+        style: SIMPLE
+        explode: false
+        schema:
+          type: string
+      - name: idProjeto
+        in: path
+        description: id do Projeto
+        required: true
+        style: SIMPLE
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: Painel Visual gerado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/projeto'
+        400:
+          description: |
+            O Designer não tem um Projeto com esse id
+
+            OU o designer não existe
 components:
   schemas:
     palavraDaNuvemDeTags:
@@ -59,18 +252,115 @@ components:
           example: Sentido
     nuvemDeTags:
       type: array
-      description: |
-        Um array de objetos. (palavraDaNuvemDeTags)
-      example: |
-        [ {
-            "value" : 1,
-            "word" : "Sinto"
-          }, {
-            "value" : 2,
-            "word" : "Sentido"
-        } ]
+      description: Um array de objetos palavraDaNuvemDeTags
       items:
         $ref: '#/components/schemas/palavraDaNuvemDeTags'
+    urlsDaImagemDoPainelVisual:
+      type: object
+      properties:
+        original:
+          type: string
+          description: |
+            URL para Imagem em seu tamanho orinal.
+
+            A Largura e a Altura dela estão informadas nos campos Width e Height (lá em cima) respectivamente
+          format: uri
+          example: https://images.pexels.com/photos/163036/mario-luigi-yoschi-figures-163036.jpeg
+        large2x:
+          type: string
+          description: |
+            Tamanho máximo: 1880 x 1300 (pixels)
+
+            Mantém Proporção da Imagem Original
+          format: uri
+          example: https://images.pexels.com/photos/163036/mario-luigi-yoschi-figures-163036.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940
+        large:
+          type: string
+          description: |
+            Tamanho máximo: 940 x 650 (pixels)
+
+            Mantém Proporção da Imagem Original
+          format: uri
+          example: https://images.pexels.com/photos/163036/mario-luigi-yoschi-figures-163036.jpeg?auto=compress&cs=tinysrgb&h=650&w=940
+        medium:
+          type: string
+          description: |
+            Altura: 350 pixels
+
+            Largura: Ajustável
+
+            Mantém Proporção da Imagem Original
+          format: uri
+          example: https://images.pexels.com/photos/163036/mario-luigi-yoschi-figures-163036.jpeg?auto=compress&cs=tinysrgb&h=350
+        small:
+          type: string
+          description: |
+            Altura: 130 pixels
+
+            Largura: Ajustável
+
+            Mantém Proporção da Imagem Original
+          format: uri
+          example: https://images.pexels.com/photos/163036/mario-luigi-yoschi-figures-163036.jpeg?auto=compress&cs=tinysrgb&h=130
+        square:
+          type: string
+          description: Imagem Cortada para quadrada na resolução 1200 x 1200 (pixels)
+          format: uri
+          example: https://images.pexels.com/photos/163036/mario-luigi-yoschi-figures-163036.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=1200
+        portrait:
+          type: string
+          description: Imagem Cortada para ficar no tamanho 800 x 1200 (pixels)
+          format: uri
+          example: https://images.pexels.com/photos/163036/mario-luigi-yoschi-figures-163036.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800
+        landscape:
+          type: string
+          description: Imagem Cortada para ficar no tamanho 1200 x 627 (pixels)
+          format: uri
+          example: https://images.pexels.com/photos/163036/mario-luigi-yoschi-figures-163036.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200
+        tiny:
+          type: string
+          description: Imagem Cortada para ficar no tamanho 280 x 200 (pixels)
+          format: uri
+          example: https://images.pexels.com/photos/163036/mario-luigi-yoschi-figures-163036.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=200&w=280"
+      description: |
+        O link direto para a imagem é fornecido em diversos tamanhos
+
+        Esse objeto contém links diretos para a imagem em diferentes tamanhos
+    imagemDoPainelVisual:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID da Imagem no pexels.com
+          format: int64
+          example: 1068523
+        width:
+          type: integer
+          description: Largura da Imagem (em pixels)
+          format: int32
+          example: 1920
+        height:
+          type: integer
+          description: Altura da Imagem (em pixels)
+          format: int32
+          example: 1080
+        url:
+          type: string
+          description: URL para acessar a imagem no site Pexels.com
+          format: uri
+          example: https://www.pexels.com/photo/five-bulb-lights-1036936/
+        photographer:
+          type: string
+          description: Nome do Fotógrafo que produziu a Imagem
+          format: uri
+          example: Rodolfo Clix
+        src:
+          $ref: '#/components/schemas/urlsDaImagemDoPainelVisual'
+    painelVisual:
+      type: array
+      description: Um Painel Visual, com imagens do pexels.com baseadas na nuvemDeTags, que o Designer usará como inspiração para seu projeto
+      items:
+        $ref: '#/components/schemas/imagemDoPainelVisual'
     projeto:
       required:
       - id
