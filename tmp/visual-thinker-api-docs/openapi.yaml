@@ -57,7 +57,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/projeto'
+              $ref: '#/components/schemas/projetoPOST'
         required: true
       responses:
         201:
@@ -361,19 +361,28 @@ components:
       description: Um Painel Visual, com imagens do pexels.com baseadas na nuvemDeTags, que o Designer usará como inspiração para seu projeto
       items:
         $ref: '#/components/schemas/imagemDoPainelVisual'
-    projeto:
+    projetoPOST:
       required:
-      - id
       - textoLivre
       - titulo
       type: object
       properties:
-        id:
-          type: string
-          format: uuid
         titulo:
           type: string
           example: Logo da Clonadores de Humanos S.A.
-        nuvemDeTags:
-          $ref: '#/components/schemas/nuvemDeTags'
+        textoLivre:
+          type: string
+          example: Trabalho clonando clones de clones de ovelhas clonadas
+    projeto:
+      allOf:
+      - required:
+        - id
+        type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+          nuvemDeTags:
+            $ref: '#/components/schemas/nuvemDeTags'
+      - $ref: '#/components/schemas/projetoPOST'
   extensions: {}
