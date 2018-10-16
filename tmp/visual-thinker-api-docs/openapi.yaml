@@ -227,7 +227,43 @@ paths:
             application/json:
               schema:
                 type: object
-                $ref: '#/components/schemas/projeto'
+                $ref: '#/components/schemas/painelVisual'
+        400:
+          description: |
+            O Designer não tem um Projeto com esse id
+
+            OU o designer não existe
+  /projetos/{idDesigner}/projeto/{idProjeto}/projetosReferencia:
+    get:
+      tags:
+      - projetos
+      summary: Retorna Projetos de Referência
+      description: Retorna Projetos de Referência (do Behance) baseados na nuvemDeTags
+      parameters:
+      - name: idDesigner
+        in: path
+        description: id do Designer
+        required: true
+        style: SIMPLE
+        explode: false
+        schema:
+          type: string
+      - name: idProjeto
+        in: path
+        description: id do Projeto
+        required: true
+        style: SIMPLE
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: Painel Visual gerado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/referenciaBehance'
         400:
           description: |
             O Designer não tem um Projeto com esse id
@@ -361,6 +397,232 @@ components:
       description: Um Painel Visual, com imagens do pexels.com baseadas na nuvemDeTags, que o Designer usará como inspiração para seu projeto
       items:
         $ref: '#/components/schemas/imagemDoPainelVisual'
+    capasReferenciaBehance:
+      type: object
+      properties:
+        115:
+          type: string
+          description: Capa com 115px de largura. Mantém proporções da imagem original.
+          format: uri
+          example: https://mir-s3-cdn-cf.behance.net/projects/115/ca9fad66680727.Y3JvcCwxNTU3LDEyMTgsMjA4LDM2Ng.png
+        202:
+          type: string
+          description: Capa com 115px de largura. Mantém proporções da imagem original.
+          format: uri
+          example: https://mir-s3-cdn-cf.behance.net/projects/202/ca9fad66680727.Y3JvcCwxNTU3LDEyMTgsMjA4LDM2Ng.png
+        404:
+          type: string
+          description: Capa com 115px de largura. Mantém proporções da imagem original.
+          format: uri
+          example: https://mir-s3-cdn-cf.behance.net/projects/404/ca9fad66680727.Y3JvcCwxNTU3LDEyMTgsMjA4LDM2Ng.png
+        808:
+          type: string
+          description: Capa com 115px de largura. Mantém proporções da imagem original.
+          format: uri
+          example: https://mir-s3-cdn-cf.behance.net/projects/808/ca9fad66680727.Y3JvcCwxNTU3LDEyMTgsMjA4LDM2Ng.png
+        original:
+          type: string
+          description: Capa em sua resolução original
+          format: uri
+          example: https://mir-s3-cdn-cf.behance.net/projects/original/ca9fad66680727.Y3JvcCwxNTU3LDEyMTgsMjA4LDM2Ng.png
+      description: Capas/Thumbnails/Icones do projeto em diferentes tamanhos
+    avataresAutorReferenciaBehance:
+      type: object
+      properties:
+        50:
+          type: string
+          description: Avatar com 50px de largura. Mantém proporções da imagem original.
+          format: uri
+          example: https://mir-s3-cdn-cf.behance.net/user/50/43508f1776807.5b332c27e0c8e.jpg
+        100:
+          type: string
+          description: Avatar com 100px de largura. Mantém proporções da imagem original.
+          format: uri
+          example: https://mir-s3-cdn-cf.behance.net/user/100/43508f1776807.5b332c27e0c8e.jpg
+        115:
+          type: string
+          description: Avatar com 115px de largura. Mantém proporções da imagem original.
+          format: uri
+          example: https://mir-s3-cdn-cf.behance.net/user/115/43508f1776807.5b332c27e0c8e.jpg
+        138:
+          type: string
+          description: Avatar com 138px de largura. Mantém proporções da imagem original.
+          format: uri
+          example: https://mir-s3-cdn-cf.behance.net/user/138/43508f1776807.5b332c27e0c8e.jpg
+        230:
+          type: string
+          description: Avatar com 230px de largura. Mantém proporções da imagem original.
+          format: uri
+          example: https://mir-s3-cdn-cf.behance.net/user/230/43508f1776807.5b332c27e0c8e.jpg
+        276:
+          type: string
+          description: Avatar com 276px de largura. Mantém proporções da imagem original.
+          format: uri
+          example: https://mir-s3-cdn-cf.behance.net/user/276/43508f1776807.5b332c27e0c8e.jpg
+      description: Avatar/Thumbnail/Foto do Autor em diferentes tamanhos
+    estatisticasAutorReferenciaBehance:
+      type: object
+      properties:
+        followers:
+          type: integer
+          description: Quantos designers seguem ele (no BeHance)
+          format: int32
+          example: 9493
+        following:
+          type: integer
+          description: Quantos designers ele segue (no BeHance)
+          format: int32
+          example: 190
+        appreciations:
+          type: integer
+          description: Quantas Curtidas/Appreciations os projetos dele receberam (no BeHance)
+          format: int32
+          example: 11488
+        views:
+          type: integer
+          description: Quantas vezes os projetos dele foram visualizados (no BeHance)
+          format: int32
+          example: 123449
+        comments:
+          type: integer
+          description: Quantas comentários os projetos dele receberam (no BeHance)
+          format: int32
+          example: 287
+      description: Estatísticas do (co-)Autor do Projeto de Referência do Behance
+    autorReferenciaBehance:
+      type: object
+      properties:
+        id:
+          type: string
+          description: id do projeto no behance
+          format: int64
+          example: "1776807"
+        first_name:
+          type: string
+          description: Primeiro nome
+          example: Tamerlan
+        last_name:
+          type: string
+          description: Sobrenome
+          example: Aziev
+        username:
+          type: string
+          description: Login
+          example: Aziev
+        city:
+          type: string
+          description: Cidade
+          example: Dubai
+        state:
+          type: string
+          description: Estado ou Província
+          example: RN
+        country:
+          type: string
+          description: País
+          example: United Arab Emirates
+        location:
+          type: string
+          description: Cidade, Estado, País
+          example: Natal, RN, Brazil
+        occupation:
+          type: string
+          description: Ocupação/Trabalho
+          example: Awwwards Design Jury. Freelance Visual/Interaction Designer.
+        created_on:
+          type: string
+          description: Quando o Autor se cadastrou no behance (timestamp)
+          format: timestamp
+          example: "1351689730"
+        url:
+          type: string
+          description: URL para acessar a página do Autor no Behance
+          format: uri
+          example: https://www.behance.net/Aziev
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/avataresAutorReferenciaBehance'
+        display_name:
+          type: string
+          description: Como o Autor é chamado (nome que aparece na página dele)
+          example: Tamerlan Aziev
+        fields:
+          type: array
+          description: Categorias nas quais o Autor trabalha (Creatives Fields do behance https://bit.ly/2RW75C7)
+          example: "[  \n  \"UI/UX\",\n  \"Web Design\",\n  \"Interaction Design\"\
+            \n]\n"
+          items:
+            type: string
+        website:
+          type: string
+          description: URL para acessar o website profissional do Autor
+          format: uri
+          example: http://dribbble.com/aziev
+        stats:
+          type: object
+          $ref: '#/components/schemas/estatisticasAutorReferenciaBehance'
+      description: Autor ou Co-Autor de um Projeto de Referência (no Behance)
+    referenciaBehance:
+      type: object
+      properties:
+        id:
+          type: string
+          description: id do projeto do behance
+          format: int64
+          example: "66680727"
+        name:
+          type: string
+          description: Nome/Título do Projeto
+          example: Papaya Fuzz vinyl design
+        published_on:
+          type: string
+          description: Quando o projeto foi PUBLICADO no behance (timestamp)
+          format: timestamp
+          example: "1538474006"
+        created_on:
+          type: string
+          description: Quando o projeto foi CRIADO no behance (timestamp)
+          format: timestamp
+          example: "1538474006"
+        modified_on:
+          type: string
+          description: Quando o projeto foi MODIFICADO no behance (timestamp)
+          format: timestamp
+          example: "1538474006"
+        url:
+          type: string
+          description: URL para acessar o projeto diretamente no Behance
+          format: uri
+          example: https://www.behance.net/gallery/66680727/Papaya-Fuzz-vinyl-design
+        privacy:
+          type: string
+          description: Diz se o projeto é público ou privado. Todos os projetos listados aqui serão públicos.
+          example: publicar
+        fields:
+          type: array
+          description: Categorias do Projeto (Creatives Fields do behance https://bit.ly/2RW75C7)
+          example: "[\n  \"Graphic Design\",\n  \"Illustration\"\n] \n"
+          items:
+            type: string
+        covers:
+          type: array
+          items:
+            $ref: '#/components/schemas/capasReferenciaBehance'
+        mature_content:
+          type: integer
+          description: |
+            Diz se há conteúdo adulto (para maiores de 18 anos)
+
+            0 Indica que não há contéudo adulto
+            valores diferentes de zero, indicam que há conteúdo adulto sim.
+          format: int32
+          example: 0
+        owners:
+          type: array
+          items:
+            $ref: '#/components/schemas/autorReferenciaBehance'
+      description: Projeto à usar como referência, criado no behance.net por outros Designers
     projetoPOST:
       required:
       - textoLivre
